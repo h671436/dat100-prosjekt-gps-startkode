@@ -28,35 +28,43 @@ public class GPSComputer {
 	
 	// beregn total distances (i meter)
 	public double totalDistance() {
-
+		
+		//
 		double distance = 0;
 
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
-
+		for (int i = 1; i < gpspoints.length; i++) {
+			double dis = distance(gpspoints[i-1], gpspoints[i]);
+			distance += dis;
+		}
+		// idk which distance need to go first
+		
+		return distance;
 	}
 
 	// beregn totale høydemeter (i meter)
 	public double totalElevation() {
-
 		double elevation = 0;
 
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
-
+		for (int i = 1; i < gpspoints.length; i++) {
+			double el1 = gpspoints[i].getElevation();
+			double el2 = gpspoints[i - 1].getElevation();
+			if (el1 > el2) {
+				elevation += el1 - el2;
+			}
+		}
+		
+		return elevation;
 	}
 
 	// beregn total tiden for hele turen (i sekunder)
 	public int totalTime() {
-
-		throw new UnsupportedOperationException(TODO.method());
-
+		
+		int time = gpspoints[gpspoints.length - 1].getTime() - gpspoints[0].getTime();
+		
+		// how the fuck is this 2 like what
+		System.out.println(gpspoints[gpspoints.length - 1].getTime());
+		
+		return time;
 	}
 		
 	// beregn gjennomsnitshastighets mellom hver av gps punktene

@@ -8,10 +8,7 @@ import no.hvl.dat100ptc.oppgave1.GPSPoint;
 public class GPSUtils {
 
 	public static double findMax(double[] da) {
-
-		double max; 
-		
-		max = da[0];
+		double max = da[0];
 		
 		for (double d : da) {
 			if (d > max) {
@@ -23,87 +20,94 @@ public class GPSUtils {
 	}
 
 	public static double findMin(double[] da) {
-
-		double min;
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUT
-
+		double min = da[0];
+		
+		for (double d : da) {
+			if (d < min) {
+				min = d;
+			}
+		}
+		
+		return min;
 	}
 
 	public static double[] getLatitudes(GPSPoint[] gpspoints) {
+		double[] latitudes = new double[gpspoints.length];
 
-		// TODO - START
+		for (int i = 0; i < gpspoints.length; i++) {
+			latitudes[i] = gpspoints[i].getLatitude();
+		}
 		
-		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - SLUTT
+		return latitudes;
 	}
 
 	public static double[] getLongitudes(GPSPoint[] gpspoints) {
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
+		double[] longitudes = new double[gpspoints.length];
 		
-		// TODO - SLUTT
+		for (int i = 0; i < gpspoints.length; i++) {
+			longitudes[i] = gpspoints[i].getLongitude();
+		}
 
+		return longitudes;
 	}
 
 	private static int R = 6371000; // jordens radius
 
 	public static double distance(GPSPoint gpspoint1, GPSPoint gpspoint2) {
+		double radlat1 = toRadians(gpspoint1.getLatitude());
+		double radlong1 = toRadians(gpspoint1.getLongitude());
+		double radlat2 = toRadians(gpspoint2.getLatitude());
+		double radlong2 = toRadians(gpspoint2.getLongitude());
+		
+		double e = pow(sin((radlat2 - radlat1) / 2), 2);
+		double f = pow(sin((radlong2 - radlong1) / 2), 2);
+		double a = e + cos(radlat1) * cos(radlat2) * f;
+		
+		double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+		
+		double d = R * c;
 
-		double d;
-		double latitude1, longitude1, latitude2, longitude2;
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
-
+		return d;
 	}
 
 	public static double speed(GPSPoint gpspoint1, GPSPoint gpspoint2) {
-
-		int secs;
-		double speed;
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
-
+		int secs = gpspoint2.getTime() - gpspoint1.getTime();
+		double distance = distance(gpspoint1, gpspoint2);
+		
+		double speed = distance / (secs / 360);
+		
+		return speed;
 	}
 
 	public static String formatTime(int secs) {
-
-		String timestr;
 		String TIMESEP = ":";
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
+		String timestr = "  "; // i need to format this
 		
-		// TODO - SLUTT
-
+		int hh = secs / 3600;
+		int mm = (secs % 3600) / 60;
+		int ss = (secs % 3600) % 60;
+		
+		int[] time = {hh, mm, ss};
+		
+		for (int x : time) {
+			timestr += String.format("%02d", x);
+			if (x != time[time.length - 1]) {
+				timestr += TIMESEP;
+			}
+		}
+		
+		// timestr = String.format("%10f", timestr);
+		
+		return timestr;
 	}
 	private static int TEXTWIDTH = 10;
 
 	public static String formatDouble(double d) {
-
-		String str;
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
+		String str = "" + d;
 		
+		//str += (Math.round(d*100d) / 100);
+		str = String.format("%10.2f", str);
+		
+		return str;
 	}
 }
