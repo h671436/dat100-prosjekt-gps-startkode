@@ -1,6 +1,6 @@
 package no.hvl.dat100ptc.oppgave2;
 
-import no.hvl.dat100ptc.TODO;
+// import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
 public class GPSDataConverter {
@@ -14,9 +14,9 @@ public class GPSDataConverter {
 
 	public static int toSeconds(String timestr) {
 		
-		String hrtxt = timestr.substring(TIME_STARTINDEX, 12);
-		String mintxt = timestr.substring(14, 15);
-		String sectxt = timestr.substring(17, 18);
+		String hrtxt = timestr.substring(TIME_STARTINDEX, 13);
+		String mintxt = timestr.substring(14, 16);
+		String sectxt = timestr.substring(17, 19);
 		
 		int hr = Integer.parseInt(hrtxt);
 		int min = Integer.parseInt(mintxt);

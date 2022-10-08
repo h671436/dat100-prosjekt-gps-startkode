@@ -3,7 +3,7 @@ package no.hvl.dat100ptc.oppgave5;
 import javax.swing.JOptionPane;
 
 import easygraphics.EasyGraphics;
-import no.hvl.dat100ptc.TODO;
+// import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 import no.hvl.dat100ptc.oppgave2.GPSData;
 import no.hvl.dat100ptc.oppgave2.GPSDataFileReader;
@@ -42,16 +42,20 @@ public class ShowSpeed extends EasyGraphics {
 	}
 	
 	public void showSpeedProfile(int ybase, int N) {
-
-		// get segments speeds from the GPS computer object		
-		double[] speeds = gpscomputer.speeds();
-
-		int x = MARGIN,y;
-
-		// TODO - START
+		// int x has two values??? and what I'm I using N for?
+		// double check the values of the graph looks a little off
 		
-		throw new UnsupportedOperationException(TODO.method());
-	
-		// TODO - SLUTT
+		double[] speeds = gpscomputer.speeds();
+		int averagespeed = ybase - (int) gpscomputer.averageSpeed();
+		int x = MARGIN; //,y;
+		
+		setColor(0, 0, 255); // blå
+		for (double y2 : speeds) {
+			drawLine(x, ybase, x, (int) (ybase - y2));
+			x += 2;
+		}
+		
+		setColor(0, 255, 0); // grønn
+		drawLine(MARGIN, averagespeed, x - 2, averagespeed);
 	}
 }

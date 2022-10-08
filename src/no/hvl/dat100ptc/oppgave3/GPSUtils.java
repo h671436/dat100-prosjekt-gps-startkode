@@ -2,7 +2,7 @@ package no.hvl.dat100ptc.oppgave3;
 
 import static java.lang.Math.*;
 
-import no.hvl.dat100ptc.TODO;
+// import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
 public class GPSUtils {
@@ -15,7 +15,7 @@ public class GPSUtils {
 				max = d;
 			}
 		}
-		
+	
 		return max;
 	}
 
@@ -71,17 +71,17 @@ public class GPSUtils {
 	}
 
 	public static double speed(GPSPoint gpspoint1, GPSPoint gpspoint2) {
-		int secs = gpspoint2.getTime() - gpspoint1.getTime();
-		double distance = distance(gpspoint1, gpspoint2);
+		int time = gpspoint2.getTime() - gpspoint1.getTime(); // i sekunder
+		double dis = distance(gpspoint1, gpspoint2); // i meter
 		
-		double speed = distance / (secs / 360);
+		double speed = ((dis / time) * 3600) / 1000;
 		
 		return speed;
 	}
 
 	public static String formatTime(int secs) {
 		String TIMESEP = ":";
-		String timestr = "  "; // i need to format this
+		String timestr = "";
 		
 		int hh = secs / 3600;
 		int mm = (secs % 3600) / 60;
@@ -96,17 +96,17 @@ public class GPSUtils {
 			}
 		}
 		
-		// timestr = String.format("%10f", timestr);
+		timestr = String.format("%1$10s", timestr);
 		
 		return timestr;
 	}
 	private static int TEXTWIDTH = 10;
 
 	public static String formatDouble(double d) {
-		String str = "" + d;
+		String str = "";
 		
-		//str += (Math.round(d*100d) / 100);
-		str = String.format("%10.2f", str);
+		str += Math.round(d*100) / 100.0;
+		str = String.format("%1$" + TEXTWIDTH + "s", str);
 		
 		return str;
 	}

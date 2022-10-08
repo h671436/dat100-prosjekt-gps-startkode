@@ -1,9 +1,9 @@
 package no.hvl.dat100ptc.oppgave1;
 
-import no.hvl.dat100ptc.TODO;
+// import no.hvl.dat100ptc.TODO;
 
 public class GPSPoint {
-	private int time;
+	private int time; // i sekunder
 	private double latitude;
 	private double longitude;
 	private double elevation;

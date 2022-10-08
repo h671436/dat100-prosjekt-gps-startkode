@@ -1,6 +1,6 @@
 package no.hvl.dat100ptc.oppgave2;
 
-import no.hvl.dat100ptc.TODO;
+// import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
 public class GPSData {
@@ -10,6 +10,7 @@ public class GPSData {
 
 	public GPSData(int n) {
 		gpspoints = new GPSPoint[n];
+		antall = 0;
 	}
 
 	public GPSPoint[] getGPSPoints() {
