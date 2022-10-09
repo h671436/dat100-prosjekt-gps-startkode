@@ -76,7 +76,7 @@ public class GPSUtils {
 		
 		double speed = ((dis / time) * 3600) / 1000;
 		
-		return speed;
+		return speed; // km/t
 	}
 
 	public static String formatTime(int secs) {

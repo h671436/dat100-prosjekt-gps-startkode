@@ -70,7 +70,7 @@ public class GPSComputer {
 	}
 	
 	public double maxSpeed() {
-		double [] speeds = speeds();
+		double[] speeds = speeds();
 		
 		double maxspeed = GPSUtils.findMax(speeds);
 		
@@ -78,6 +78,20 @@ public class GPSComputer {
 	}
 
 	public double averageSpeed() {
+		/*
+		WHY IS THIS NOT THE ASNWER
+		double[] speeds = speeds();
+		double sum = 0;
+		
+		for (double x : speeds) {
+			System.out.println("x : " + x);
+			sum += x;
+			System.out.println("sum : " + sum);
+		}
+		
+		double average = (sum / speeds.length);
+		*/
+		
 		double average = (totalDistance() / totalTime()) * 3.6;
 		
 		return average;
