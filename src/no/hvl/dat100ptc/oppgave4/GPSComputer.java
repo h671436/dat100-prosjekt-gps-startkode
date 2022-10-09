@@ -165,5 +165,17 @@ public class GPSComputer {
 		
 		return str;
 	}
+	
+	public double[] climbs() {
+		// stigningsprosent ?? idk formula
+	}
+	
+	public double maxClimb() {
+		double[] climbs = climbs();
+		
+		double max = GPSUtils.findMax(climbs);
+		
+		return max;
+	}
 
 }
