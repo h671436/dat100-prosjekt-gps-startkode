@@ -53,37 +53,56 @@ public class ShowRoute extends EasyGraphics {
 	// antall y-pixels per breddegrad
 	public double ystep() {
 	
-		double ystep;
+		double maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
+		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
 		
-		// TODO - START
+		double ystep = MAPYSIZE / (Math.abs(maxlat - minlat));
 		
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
-		
+		return ystep;
 	}
 
 	public void showRouteMap(int ybase) {
-
-		// TODO - START
+		double[] lon = GPSUtils.getLongitudes(gpspoints);
+		double[] lat = GPSUtils.getLatitudes(gpspoints);
+		int r = 2;
 		
-		throw new UnsupportedOperationException(TODO.method());
+		setColor(0, 255, 0); // grønn
+		for (int i = 0; i < gpspoints.length; i++) {
+			int x = (int) (lon[i]);
+			int y = (int) (lat[i]);
+			System.out.println("(" + x + ", " + y + ")");
+			System.out.println(i);
+			fillCircle(x, y, r);
+		}
 		
-		// TODO - SLUTT
+		// drawLine();
+		
 	}
 
 	public void showStatistics() {
+		// not formated currectly
 
 		int TEXTDISTANCE = 20;
+		int i = 1;
+		int KG = 80;
+		
+		String time = String.format("%-15s:", "Total Time") + GPSUtils.formatTime(gpscomputer.totalTime());
+		String dis = String.format("%-15s:", "Total distance") + GPSUtils.formatDouble(gpscomputer.totalDistance()) + " km";
+		String ele = String.format("%-15s:", "Total elevation") + GPSUtils.formatDouble(gpscomputer.totalElevation()) + " m";
+		String maxs = String.format("%-15s:", "Max speed") + GPSUtils.formatDouble(gpscomputer.maxSpeed()) + " km/t";
+		String aves = String.format("%-15s:", "Average speed") + GPSUtils.formatDouble(gpscomputer.averageSpeed()) + " km/t";
+		String kcal = String.format("%-15s:", "Energy") + GPSUtils.formatDouble(gpscomputer.totalKcal(KG)) + " kg";
 
+		String[] strlist = {time, dis, ele, maxs, aves, kcal};
+		
 		setColor(0,0,0);
 		setFont("Courier",12);
 		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - SLUTT;
+		for (String x : strlist) {
+			System.out.println(x);
+			drawString(x, MARGIN, TEXTDISTANCE * i);
+			i++;
+		}
 	}
 
 }

@@ -144,17 +144,26 @@ public class GPSComputer {
 	
 	private static double WEIGHT = 80.0;
 	
-	public void displayStatistics() {
-		System.out.println("==============================================");
-
-		System.out.println(String.format("%-15s:", "Total Time") + GPSUtils.formatTime(totalTime()));
-		System.out.println(String.format("%-15s:", "Total distance") + GPSUtils.formatDouble(totalDistance() / 1000) + " km");
-		System.out.println(String.format("%-15s:", "Total elevation") + GPSUtils.formatDouble(totalElevation()) + " m");
-		System.out.println(String.format("%-15s:", "Max speed") + GPSUtils.formatDouble(maxSpeed()) + " km/t");
-		System.out.println(String.format("%-15s:", "Average speed") + GPSUtils.formatDouble(averageSpeed()) + " km/t");
-		System.out.println(String.format("%-15s:", "Energy") + GPSUtils.formatDouble(totalKcal(WEIGHT)) + " kcal");
+	public String displayStatistics() {
+		// could change this to void
+		// changed from void to string idk if this is allowed
+		
+		String str = "";
 		
 		System.out.println("==============================================");
+
+		str += (String.format("%-15s:", "Total Time") + GPSUtils.formatTime(totalTime()) + "\n");
+		str += (String.format("%-15s:", "Total distance") + GPSUtils.formatDouble(totalDistance() / 1000) + " km\n");
+		str += (String.format("%-15s:", "Total elevation") + GPSUtils.formatDouble(totalElevation()) + " m\n");
+		str += (String.format("%-15s:", "Max speed") + GPSUtils.formatDouble(maxSpeed()) + " km/t\n");
+		str += (String.format("%-15s:", "Average speed") + GPSUtils.formatDouble(averageSpeed()) + " km/t\n");
+		str += (String.format("%-15s:", "Energy") + GPSUtils.formatDouble(totalKcal(WEIGHT)) + " kcal\n");
+		
+		System.out.print(str);
+		System.out.println("==============================================");
+		
+		
+		return str;
 	}
 
 }
