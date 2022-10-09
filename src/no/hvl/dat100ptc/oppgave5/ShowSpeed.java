@@ -44,9 +44,10 @@ public class ShowSpeed extends EasyGraphics {
 	public void showSpeedProfile(int ybase, int N) {
 		// int x has two values??? and what I'm I using N for?
 		// double check the values of the graph looks a little off
+		// not using all the imports????
 		
 		double[] speeds = gpscomputer.speeds();
-		int averagespeed = ybase - (int) gpscomputer.averageSpeed();
+		int averagespeed = ybase - (int) (gpscomputer.averageSpeed() + 0.5);
 		int x = MARGIN; //,y;
 		
 		setColor(0, 0, 255); // blå
