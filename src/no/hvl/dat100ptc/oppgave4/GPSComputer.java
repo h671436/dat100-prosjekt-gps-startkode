@@ -166,14 +166,28 @@ public class GPSComputer {
 		return str;
 	}
 	
+	// not really tested just first idea to come to my head
 	public double[] climbs() {
-		// stigningsprosent ?? idk formula
+		double[] climbs = new double[gpspoints.length];
+
+		for (int i = 1; i < gpspoints.length; i++) {
+			double elevation = gpspoints[i].getElevation() - gpspoints[i - 1].getElevation();
+			double distance = GPSUtils.distance(gpspoints[i -1], gpspoints[i]);
+			
+			double climb = (elevation / distance) * 100;
+			System.out.println(climb);
+			
+			climbs [i - 1] = climb;
+		}
+		
+		return climbs;
 	}
 	
 	public double maxClimb() {
 		double[] climbs = climbs();
 		
 		double max = GPSUtils.findMax(climbs);
+		System.out.println(max);
 		
 		return max;
 	}
