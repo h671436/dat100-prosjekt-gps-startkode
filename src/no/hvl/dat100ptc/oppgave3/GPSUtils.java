@@ -96,7 +96,7 @@ public class GPSUtils {
 			}
 		}
 		
-		timestr = String.format("%1$10s", timestr);
+		timestr = String.format("%10s", timestr);
 		
 		return timestr;
 	}
