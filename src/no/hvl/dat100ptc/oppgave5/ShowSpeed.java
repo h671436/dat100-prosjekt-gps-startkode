@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import easygraphics.EasyGraphics;
 // import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
+// Not sure how i am supposed to use all these imports
 import no.hvl.dat100ptc.oppgave2.GPSData;
 import no.hvl.dat100ptc.oppgave2.GPSDataFileReader;
 import no.hvl.dat100ptc.oppgave3.GPSUtils;
@@ -27,28 +28,23 @@ public class ShowSpeed extends EasyGraphics {
 		
 	}
 	
-	// read in the files and draw into using EasyGraphics
 	public static void main(String[] args) {
 		launch(args);
 	}
 
 	public void run() {
 
-		int N = gpspoints.length-1; // number of data points
+		int N = gpspoints.length-1;
 		
 		makeWindow("Speed profile", 2*MARGIN + 2 * N, 2 * MARGIN + BARHEIGHT);
 		
-		showSpeedProfile(MARGIN + BARHEIGHT,N);
+		showSpeedProfile(MARGIN + BARHEIGHT, N);
 	}
 	
 	public void showSpeedProfile(int ybase, int N) {
-		// int x has two values??? and what I'm I using N for?
-		// double check the values of the graph looks a little off
-		// not using all the imports????
-		
 		double[] speeds = gpscomputer.speeds();
-		int averagespeed = ybase - (int) (gpscomputer.averageSpeed() + 0.5);
-		int x = MARGIN; //,y;
+		int x = MARGIN, y;
+		y = ybase - (int) (gpscomputer.averageSpeed() + 0.5);
 		
 		setColor(0, 0, 255); // blå
 		for (double y2 : speeds) {
@@ -57,6 +53,6 @@ public class ShowSpeed extends EasyGraphics {
 		}
 		
 		setColor(0, 255, 0); // grønn
-		drawLine(MARGIN, averagespeed, x - 2, averagespeed);
+		drawLine(MARGIN, y, x - 2, y);
 	}
 }

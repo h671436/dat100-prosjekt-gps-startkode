@@ -42,14 +42,12 @@ public class ShowProfile extends EasyGraphics {
 	}
 
 	public void showHeightProfile(int ybase) {
-		// int x = two things huh?
-		
-		int x = MARGIN; // ,y;
+		int x = MARGIN, y;
 		
 		setColor(0, 0, 255);
 		for (int i = 0; i < gpspoints.length; i++) {
-			int elevation = ybase - (int) gpspoints[i].getElevation();
-			drawLine(x, ybase, x, elevation);
+			y = ybase - (int) gpspoints[i].getElevation();
+			drawLine(x, ybase, x, y);
 			x += 2;
 		}
 	}

@@ -3,7 +3,7 @@ package no.hvl.dat100ptc.oppgave5;
 import javax.swing.JOptionPane;
 
 import easygraphics.EasyGraphics;
-import no.hvl.dat100ptc.TODO;
+// import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 import no.hvl.dat100ptc.oppgave3.GPSUtils;
 import no.hvl.dat100ptc.oppgave4.GPSComputer;
@@ -66,12 +66,11 @@ public class ShowRoute extends EasyGraphics {
 		double[] lat = GPSUtils.getLatitudes(gpspoints);
 		int r = 2;
 		
+		// shit dont work
 		setColor(0, 255, 0); // grønn
 		for (int i = 0; i < gpspoints.length; i++) {
 			int x = (int) (lon[i]);
 			int y = (int) (lat[i]);
-			System.out.println("(" + x + ", " + y + ")");
-			System.out.println(i);
 			fillCircle(x, y, r);
 		}
 		
@@ -80,8 +79,6 @@ public class ShowRoute extends EasyGraphics {
 	}
 
 	public void showStatistics() {
-		// not formated currectly
-
 		int TEXTDISTANCE = 20;
 		int i = 1;
 		int KG = 80;
@@ -91,13 +88,12 @@ public class ShowRoute extends EasyGraphics {
 		String ele = String.format("%-15s:", "Total elevation") + GPSUtils.formatDouble(gpscomputer.totalElevation()) + " m";
 		String maxs = String.format("%-15s:", "Max speed") + GPSUtils.formatDouble(gpscomputer.maxSpeed()) + " km/t";
 		String aves = String.format("%-15s:", "Average speed") + GPSUtils.formatDouble(gpscomputer.averageSpeed()) + " km/t";
-		String kcal = String.format("%-15s:", "Energy") + GPSUtils.formatDouble(gpscomputer.totalKcal(KG)) + " kg";
+		String kcal = String.format("%-15s:", "Energy") + GPSUtils.formatDouble(gpscomputer.totalKcal(KG)) + " kcal";
 
 		String[] strlist = {time, dis, ele, maxs, aves, kcal};
 		
 		setColor(0,0,0);
-		setFont("Courier",12);
-		
+		setFont("Courier New",12);
 		for (String x : strlist) {
 			System.out.println(x);
 			drawString(x, MARGIN, TEXTDISTANCE * i);
