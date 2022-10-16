@@ -6,7 +6,7 @@ public class GPSPoint {
 	private int time; // i sekunder
 	private double latitude;
 	private double longitude;
-	private double elevation;
+	private double elevation; // i meter
 		
 	public GPSPoint(int time, double latitude, double longitude, double elevation) {
 		setTime(time);
