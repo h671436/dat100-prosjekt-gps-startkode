@@ -44,7 +44,7 @@ public class ShowRoute extends EasyGraphics {
 
 		double maxlon = GPSUtils.findMax(GPSUtils.getLongitudes(gpspoints));
 		double minlon = GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints));
-
+		
 		double xstep = MAPXSIZE / (Math.abs(maxlon - minlon)); 
 
 		return xstep;
@@ -62,20 +62,31 @@ public class ShowRoute extends EasyGraphics {
 	}
 
 	public void showRouteMap(int ybase) {
+		final int R = 2;
 		double[] lon = GPSUtils.getLongitudes(gpspoints);
 		double[] lat = GPSUtils.getLatitudes(gpspoints);
-		int r = 2;
+		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
+		double minlon = GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints));
 		
-		// shit dont work
 		setColor(0, 255, 0); // grønn
-		for (int i = 0; i < gpspoints.length; i++) {
-			int x = (int) (lon[i]);
-			int y = (int) (lat[i]);
-			fillCircle(x, y, r);
+		for(int i = 0; i < gpspoints.length; i++) {
+			if ( i < gpspoints.length - 1) {
+				// make circle
+				int x = MARGIN + (int) ((lon[i] - minlon) * xstep());
+				int y = ybase - (int) ((lat[i] - minlat) * ystep());
+				fillCircle(x, y, R);
+				
+				// draw line to next circle
+				int x2 = MARGIN + (int) ((lon[i + 1] - minlon) * xstep());
+				int y2 = ybase - (int) ((lat[i + 1] - minlat) * ystep());
+				drawLine(x, y, x2, y2);
+			} else {
+				// last circle
+				int x = MARGIN + (int) ((lon[i] - minlon) * xstep());
+				int y = ybase - (int) ((lat[i] - minlat) * ystep());
+				fillCircle(x, y, R);
+			}
 		}
-		
-		// drawLine();
-		
 	}
 
 	public void showStatistics() {
@@ -95,7 +106,6 @@ public class ShowRoute extends EasyGraphics {
 		setColor(0,0,0);
 		setFont("Courier New",12);
 		for (String x : strlist) {
-			System.out.println(x);
 			drawString(x, MARGIN, TEXTDISTANCE * i);
 			i++;
 		}
